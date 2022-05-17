@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card body">
+                    <form   [formGroup]="formgrouppost" (ngSubmit)="addpost()">
+                    <div class="form-group">
+                        <input type="text"  formControlName="UserId" class="form-control" placeholder="Ingresar UserId">
+                        <input type="text" formControlName="Description" class="form-control" placeholder="Ingresar Description">
+                        <input type="text" formControlName="Image" class="form-control" placeholder="Ingresar Image">
+                        <input type="text" formControlName="Date" class="form-control" placeholder="Ingresar Fecha">
+                    </div>
+                    <button class="btn btn-primary mr-2" type="button" (click)="limpiar()">Limpiar </button> 
+                    <button class="btn btn-secondary mr-2" type="submit">Guardar </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- llenamos la grilla -->
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>PostId</th>
+                    <th>UserId</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- llenamos la grilla con la variable de su respectivo componente -->
+                <tr *ngFor=" let post of  this.listpost">
+                <td>{{post.postId}}</td>
+                <td>{{post.userId}}</td>
+                <td>{{post.date}}</td>
+                <td>{{post.description}}</td>
+                <td>{{post.image}}</td>
+                <td>
+                    <button class="btn btn-secondary btn-sm" (click)="updatepost(post,post.postId)">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="deletepost(post.postId)">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>        
+</div>
